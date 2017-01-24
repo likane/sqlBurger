@@ -4,7 +4,8 @@ var router = express.Router();
 var burger = require("../models/burger.js")
 
 router.get('/', function(request, result){
-	result.redirect("/burgers");
+	//result.redirect("/burgers");
+	result.sendFile(path.join(__dirname + '../views/index.handlebars'));
 });
 
 router.get('/burgers', function(request, result){

@@ -1,33 +1,62 @@
 var express = require('express');
-var mysql = require('mysql');
-var exphbs = require('express-handlebars');
-var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 
-//import localhost connections
-var connection = require('./config/connection.js');
+//UNNEEDED DEPENDENCIES =============================
+//var mysql = require('mysql');
+//var exphbs = require('express-handlebars');
+//var methodOverride = require('method-override');
 
-//import routes and provide host connection
-var routes = require('./controllers/burgers_controller.js');
-var PORT = 3000;
+//SET UP EXPRESS APP ================================
 var app = express();
+var PORT = process.env.PORT || 3000;
 
+//REQUIRE MODELS.JS FOR SYNCING =====================
+var db = require('./models');
+
+
+//SET UP EXPRESS APP TO HAND DATA PARSING ===========
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use(methodOverride("_method"));
+//STATIC DIRECTORY
+app.use(express.static("./public"));
 
-var exphbs = require('express-handlebars');
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
-//set hanldebars as the default templating engine
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+db.sequelize.sync().then(function(){
+	app.listen(PORT, function(){
+		console.log("app listening on PORT" + PORT);
+	})
+})
 
-app.use('/', routes);//attaches express to controller methods file
-app.use('/update', routes);
-app.use('/create', routes);
-app.listen(PORT);
+//UNNEEDED ===========================================
+// //import routes and provide host connection
+// var routes = require('./controllers/burgers_controller.js');
 
-//0 - establish route and server connection
+
+// //import localhost connections
+// var connection = require('./config/connection.js');
+
+
+// var exphbs = require('express-handlebars');
+
+// //set hanldebars as the default templating engine
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// app.set('view engine', 'handlebars');
+
+
+// app.use(express.static("./public"));
+
+
+// app.use('/', routes);//attaches express to controller methods file
+// app.use('/update', routes);
+// app.use('/create', routes);
+// //app.listen(PORT);
+
+
+
+
+// //0 - establish route and server connection
