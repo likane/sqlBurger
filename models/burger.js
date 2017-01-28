@@ -29,10 +29,56 @@
 
 // module.exports = burg;
 
-module.exports = function(sequelize, DataTypes){
-	var newBurger = sequelize.define("newBurger", {
+// module.exports = function(sequelize, DataTypes){
+// 	var dbBurgers = sequelize.define("newBurger", {
+// 		burger_name: {
+// 			type: DataTypes.STRING,
+// 			allowNull: false,
+// 			validate: {
+// 				len: [1, 40]
+// 			}
+// 		},
+
+
+// 		DEVOURED: {
+// 			type: DataTypes.BOOLEAN,
+// 			defaultValue: false,
+// 		}
+// 	});
+// 	return dbBurgers;
+// }
+
+// var Sequelize = require("sequelize");
+
+// var sequelize = require("../config/connection.js");
+module.exports = function(sequelize, DataTypes) {
+
+	var burgers = sequelize.define("burgers", {
+
+	// burger_name: {
+	// 	type: DataTypes.STRING,
+	// 	allowNull: false,
+	// 	validate: {
+	// 		len: [1]
+	// 	}
+	// },
+	// devoured: {
+	// 	type: DataTypes.BOOLEAN,
+	// 	defaultValue: false
+	// },
+	// created_at: {
+	// 	type: DataTypes.DATE 
+	// }
+
 		burger_name: DataTypes.STRING,
-		DEVOURED: DataTypes.BOOLEAN
+		devoured: DataTypes.BOOLEAN
 	});
-	return newBurger;
-}
+	return burgers;
+};
+
+
+
+//module.exports = Burgers;
+
+
+

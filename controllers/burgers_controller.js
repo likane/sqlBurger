@@ -1,51 +1,51 @@
-var express = require("express");
+// var express = require("express");
 
-var router = express.Router();
-var burger = require("../models/burger.js")
+// var router = express.Router();
+// var burger = require("../models/burger.js")
 
-router.get('/', function(request, result){
-	//result.redirect("/burgers");
-	result.sendFile(path.join(__dirname + '../views/index.handlebars'));
-});
+// router.get('/', function(request, result){
+// 	//result.redirect("/burgers");
+// 	result.sendFile(path.join(__dirname + '../views/index.handlebars'));
+// });
 
-router.get('/burgers', function(request, result){
-	burger.selectAll(function(data){
-		var allObject = {
-			burger: data
-		};
+// router.get('/burgers', function(request, result){
+// 	burger.selectAll(function(data){
+// 		var allObject = {
+// 			burger: data
+// 		};
 
-		//console.log('LINE 23;;;;CONTROLLER:' + allObject);
-		result.render('index', allObject);
-	});
-});
+// 		//console.log('LINE 23;;;;CONTROLLER:' + allObject);
+// 		result.render('index', allObject);
+// 	});
+// });
 
-router.post('/burgers/create', function(request, result){
-	burger.insertOne([
-			 'burger_name', 'devoured'
-		], [
-			request.body.burger_name, request.body.devoured
-		], function() {
-			result.redirect('/burgers'); 
-		});
-});
+// router.post('/burgers/create', function(request, result){
+// 	burger.insertOne([
+// 			 'burger_name', 'devoured'
+// 		], [
+// 			request.body.burger_name, request.body.devoured
+// 		], function() {
+// 			result.redirect('/burgers'); 
+// 		});
+// });
 
-router.put('/burgers/update/:id', function(request, result){
+// router.put('/burgers/update/:id', function(request, result){
 
-	var condition = "id = " + request.params.id;
-	//console.log(condition);
+// 	var condition = "id = " + request.params.id;
+// 	//console.log(condition);
 
-	burger.updateOne({
-		devoured: request.body.devoured
-	}, condition, function(){
-		result.redirect('/burgers');
-	});
-});
-
-
-module.exports = router;
+// 	burger.updateOne({
+// 		devoured: request.body.devoured
+// 	}, condition, function(){
+// 		result.redirect('/burgers');
+// 	});
+// });
 
 
-//get
-//post requests from burger.js and push to view
+// module.exports = router;
 
-//2 -- connect GUI with model/db with get/post requests
+
+// //get
+// //post requests from burger.js and push to view
+
+// //2 -- connect GUI with model/db with get/post requests

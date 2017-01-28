@@ -1,4 +1,4 @@
-var path = require("path"); 
+var path = require("path"); //dependencie
 
 //ROUTES ===================================
 module.exports = function(app) {

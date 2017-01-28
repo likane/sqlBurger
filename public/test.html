@@ -2,9 +2,79 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 		<title>Burgers!Burgers!Burgers!</title>
 	</head>
 	<body>
-		{{{ body }}}
+		<h1>Eat-Da-Burger!</h1>
+
+<div class="container">
+	
+	<div class="whole">
+		<h2>Ready to Eat</h2>
+
+		<!--{{#each burger}}
+			{{#unless this.devoured}}
+			
+				<p>{{this.id}}. {{this.burger_name}}</p>
+
+				<form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+          		<input type="hidden" name="devoured" value="true">
+          		<button type="submit">DEVOUR!</button>
+        		</form>
+			
+			{{/unless}}
+				
+		{{/each}}-->
+
+
+	</div>
+
+	<div class="eaten">
+		<h2>Devoured</h2>
+		<!--{{#each burger}}
+			{{#if this.devoured}}
+			
+				<p>{{this.id}}. {{this.burger_name}}</p>		
+				
+				<form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+          		<input type="hidden" name="devoured" value="false">
+          		<button type="submit">uneat!</button>
+        		</form>
+
+			{{/if}}
+			
+		{{/each}}-->
+	</div>
+
+	<h2>Add a Burger!</h2>
+
+	<div class ="addSandwitch">
+		<form class="create-update-form" action="burgers/create" method="POST">
+		
+			
+			<div class="form-group">
+    			<label>Burger Name:</label>
+   			    <input type="text" id="burgerName" name="burger_name">
+ 			 </div>
+
+  			<div class="form-group">
+    			<label>Devoured?</label><br>
+    			<input type="radio" name="devoured" value="1" checked> Devoured!<br>
+    			<input type="radio" name="devoured" value="0"> Ready To Eat
+  			</div>
+
+		
+
+		<button type="submit">Submit</button>
+
+		<p>Enter a burger you want to eat. Click the "Submit" button.</p>
+	</div>
+
+
+
+</div>
 	</body>
 </html>

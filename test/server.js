@@ -2,17 +2,16 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 //UNNEEDED DEPENDENCIES =============================
-var mysql = require('mysql');
-var exphbs = require('express-handlebars');
-var methodOverride = require('method-override');
-var path = require("path");
+//var mysql = require('mysql');
+//var exphbs = require('express-handlebars');
+//var methodOverride = require('method-override');
 
 //SET UP EXPRESS APP ================================
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 //REQUIRE MODELS.JS FOR SYNCING =====================
-var db = require('./models');
+//var db = require('./models/burger.js');
 
 
 //SET UP EXPRESS APP TO HAND DATA PARSING ===========
@@ -22,27 +21,22 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //STATIC DIRECTORY
-app.use(express.static(path.join(__dirname, "./public")));
+app.use(express.static("./views/layouts/main.handlebars"));
 
-app.use(methodOverride("_method"));
-
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
-//require("./routes/html-routes.js")(app);
+require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 
 
-// app.listen(PORT, function() {
-// 	//assert(PORT == 3000, "Connection is on port 3000");
-// 	console.log("app listening on port " + PORT);
-// });
-db.sequelize.sync({force: true}).then(function(){
-	app.listen(PORT, function(){
-		console.log("app listening on PORT " + PORT);
-	});
+app.listen(PORT, function() {
+	//assert(PORT == 3000, "Connection is on port 3000");
+	console.log("app listening on port " + PORT);
 });
+// db.sequelize.sync().then(function(){
+// 	app.listen(PORT, function(){
+// 		console.log("app listening on PORT" + PORT);
+// 	})
+// })
 
 //UNNEEDED ===========================================
 // //import routes and provide host connection
